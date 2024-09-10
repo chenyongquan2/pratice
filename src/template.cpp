@@ -113,7 +113,93 @@ void Test_EnableIf()
     std::cout << is_even(2.0) << std::endl;
     std::cout << is_even(2.2) << std::endl;
 }
+//////////////////////////////////////////////
+//模板特化与泛化
+//general
+template<typename T>
+struct is_void 
+{
+    static const bool value = false;
+};
 
+//完全特化例子
+//full specialize example
+template<>
+struct is_void<void>
+{
+    static const bool value = true;
+};
+
+template <typename T>
+struct is_pointer
+{
+    static const bool value = false;
+};
+
+//偏特化例子
+//partial specialize example
+template <typename T>
+struct is_pointer<T*>
+{
+    static const bool value = true;
+};
+
+//偏特化例子2
+//partial specialize example
+template <typename T, typename U>
+struct two_members_type
+{
+    void printType()
+    {
+        std::cout << "two_members_type: both not pointer" << std::endl;
+    }
+};
+
+template <typename T, typename U>
+struct two_members_type<T*,U>
+{
+    void printType()
+    {
+        std::cout << "two_members_type: first is pointer" << std::endl;
+    }
+};
+
+template <typename T, typename U>
+struct two_members_type<T,U*>
+{
+    void printType()
+    {
+        std::cout << "two_members_type: second is pointer" << std::endl;
+    }
+};
+
+template <>
+struct two_members_type<int,int>
+{
+    void printType()
+    {
+        std::cout << "two_members_type: both is int" << std::endl;
+    }
+};
+
+void TestGeneralAndSpecialize()
+{
+    std::cout << "TestGeneralAndSpecialize" << std::endl;
+    std::cout << is_void<int>::value << std::endl;
+    std::cout << is_void<void>::value << std::endl;
+
+    std::cout << is_pointer<int>::value << std::endl;
+    std::cout << is_pointer<int*>::value << std::endl;
+
+    two_members_type<bool,bool> t1;
+    t1.printType();
+    two_members_type<int,int*> t2;
+    t2.printType();
+    two_members_type<int*,int> t3;
+    t3.printType();
+    two_members_type<int,int> t4;
+    t4.printType();
+}
 
 //////////////////////////////////////////////
 void RegisterCommand()
@@ -145,4 +231,6 @@ void RegisterCommand()
     TestAppend();
 
     Test_EnableIf();
+
+    TestGeneralAndSpecialize();
 }
