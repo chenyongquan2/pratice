@@ -10,16 +10,21 @@
 
 class Server{
 public:
+    //该成员函数指针类型为 void (Server::*)(const std::string&)
     void login(const std::string& request_uid)
     {
         std::cout << "login one param" << std::endl;
         //one param
     }
+
+    //该成员函数指针类型为 void (Server::*)(const std::string&,const std::string&)
     void logout(const std::string& request_uid,const std::string& session_uid)
     {
         //two param
         std::cout << "logout two param" << std::endl;
     }
+
+    //该成员函数指针类型为 void (Server::*)(const std::string&, onst std::string&, const std::string&)
     void create_account(const std::string& request_uid, const std::string& session_uid, const std::string& data)
     {
         //three param
@@ -119,6 +124,7 @@ void RegisterCommand()
     REGISTER(create_account);
 
     //std::mem_fn example
+
     auto login = std::mem_fn(&Server::login);
     auto logout = std::mem_fn(&Server::logout);
     auto create_account = std::mem_fn(&Server::create_account);
