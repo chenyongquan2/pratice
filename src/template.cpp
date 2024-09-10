@@ -88,6 +88,26 @@ void TestAppend()
     auto d = Append(std::string("const T &&a"), std::string("const T &&b"));
     std::cout  << d << std::endl;
 }
+//////////////////////////////////////////////
+//使用std::enable_if等SFINAE技术的例子
+template<typename T>
+std::enable_if<std::is_integral_v<T>,bool>::type
+is_even(T t){
+    return t%2==0;
+}
+
+template<typename T>
+std::enable_if<std::is_floating_point_v<T>,bool>::type
+is_even(T t){
+    return std::fmod(t,2.0)==0;
+}
+
+void Test_EnableIf()
+{
+    std::cout << is_even(12) << std::endl;
+    std::cout << is_even(2.0) << std::endl;
+    std::cout << is_even(2.2) << std::endl;
+}
 
 
 //////////////////////////////////////////////
@@ -117,4 +137,6 @@ void RegisterCommand()
     TemplateTest();
 
     TestAppend();
+
+    Test_EnableIf();
 }
