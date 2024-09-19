@@ -136,7 +136,7 @@ public:
         std::cout << "~SingletonImplWithStaticLocalVal() destructor calling" << std::endl;
     }
 
-    SingletonImplWithStaticLocalVal(const SingletonImplWithStaticLocalVal&) = default;
+    SingletonImplWithStaticLocalVal(const SingletonImplWithStaticLocalVal&) = delete;
     SingletonImplWithStaticLocalVal& operator=(const SingletonImplWithStaticLocalVal&) = delete;
 
     void PrintObjectAddr()
@@ -184,6 +184,7 @@ inline void TestSingletonImplWithStaticLocalVal()
 class SingletonImplWithHungryMode
 {
 public:
+    //Todo：这里函数返回值可以返回 对象的引用，返回对象引用的安全性主要取决于被引用对象的生命周期。
     static SingletonImplWithHungryMode& GetInstance() 
     {
         return *m_pSingletonImplWithHungryMode;
@@ -194,7 +195,7 @@ public:
         std::cout << "~SingletonImplWithHungryMode() destructor calling" << std::endl;
     }
 
-    SingletonImplWithHungryMode(const SingletonImplWithHungryMode&) = default;
+    SingletonImplWithHungryMode(const SingletonImplWithHungryMode&) = delete;
     SingletonImplWithHungryMode& operator=(const SingletonImplWithHungryMode&) = delete;
 
     void PrintObjectAddr()
@@ -220,7 +221,11 @@ inline void TestSingletonImplWithHungryMode()
 
     std::jthread t2([](){
         std::this_thread::sleep_for(std::chrono::seconds(3));
-        SingletonImplWithHungryMode::GetInstance().PrintObjectAddr();
+        //这里如果外部调用处不使用引用来接收返回值，确实会发生对象拷贝；但是拷贝构造函数设为delete了，所以这里会报错；
+        //auto obj = SingletonImplWithHungryMode::GetInstance();
+
+        auto& obj = SingletonImplWithHungryMode::GetInstance();
+        obj.PrintObjectAddr();
     });
 
     std::jthread t3([](){
