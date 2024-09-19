@@ -7,6 +7,7 @@
 #include "jthread.h"
 #include "ref_safe.h"
 #include "asan_detech.h"
+#include "custom_deleter.h"
 
 int main(){
     //模板例子
@@ -25,7 +26,10 @@ int main(){
     //TestRefSafe();
 
     //测试asan的检测工具
-    TestAsanDetech();
+    //TestAsanDetech();
+
+    //智能指针指定自定义的Deleter
+    TestCustomDeleter();
 
     
     return 0;
