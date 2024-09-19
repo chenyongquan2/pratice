@@ -10,6 +10,18 @@ else
 	set_runtimes("MD")
 end
 
+if is_mode("debug") then
+	-- add_cxxflags("-fsanitize=address", "-static-libsan")
+	-- add_ldflags("-fsanitize=address", "-static-libsan")
+
+	-- add_cxxflags 用来添加编译器选项的
+    add_cxxflags("-fsanitize=address")
+	-- add_ldflags 用于添加链接器标志，适用于可执行文件的链接
+    add_ldflags("-fsanitize=address") 
+	-- add_shflags 用于添加共享库的链接标志。
+    add_shflags("-fsanitize=address")
+end
+
 -- set_runtimes("MD")
 set_exceptions "cxx"
 set_encodings "utf-8"
