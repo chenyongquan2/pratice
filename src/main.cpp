@@ -8,6 +8,10 @@
 #include "ref_safe.h"
 #include "asan_detech.h"
 #include "custom_deleter.h"
+#include "callable.h"
+#include "forward.h"
+#include "universal_ref.h"
+#include "bind.h"
 
 int main(){
     //模板例子
@@ -23,13 +27,25 @@ int main(){
     //TestSingletonImpl();
 
     //函数返回引用，引用去接收一个生命周期即将销毁的变量的，不安全的写法
-    //TestRefSafe();
+    TestRefSafe();
 
     //测试asan的检测工具
     //TestAsanDetech();
 
     //智能指针指定自定义的Deleter
-    TestCustomDeleter();
+    //TestCustomDeleter();
+
+    //测试通用引用
+    //TestUniversalRef();
+
+    //测试完美转发的重要性
+    //TestForward();
+
+    //可调用的概念
+    //TestCallable();
+
+    //测试bind
+    TestBind();
 
     
     return 0;
