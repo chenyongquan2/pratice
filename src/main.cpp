@@ -12,6 +12,7 @@
 #include "forward.h"
 #include "universal_ref.h"
 #include "bind.h"
+#include "function.h"
 
 int main(){
     //模板例子
@@ -27,7 +28,7 @@ int main(){
     //TestSingletonImpl();
 
     //函数返回引用，引用去接收一个生命周期即将销毁的变量的，不安全的写法
-    TestRefSafe();
+    //TestRefSafe();
 
     //测试asan的检测工具
     //TestAsanDetech();
@@ -45,7 +46,10 @@ int main(){
     //TestCallable();
 
     //测试bind
-    TestBind();
+    //TestBind();
+
+    //测试std::function
+    TestFunction();
 
     
     return 0;
