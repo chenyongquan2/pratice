@@ -21,6 +21,9 @@ void Call(Callable&& callable,Args&&... args)//T&&: 这是一个通用引用，�
 
     //Todo:完美转发例子，确保参数的值类别(所谓的值类别指左值，右值和泛左值)在传递过程中得到保留。
     callable(std::forward<Args>(args)...);
+
+    //Todo:这里不能这么写
+    //callable(std::forward<Args>(__VA_ARGS__));
 }
 
 struct Connection

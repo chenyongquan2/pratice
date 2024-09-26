@@ -13,6 +13,7 @@
 #include "universal_ref.h"
 #include "bind.h"
 #include "function.h"
+#include "var_args_pkg.h"
 
 int main(){
     //模板例子
@@ -49,7 +50,10 @@ int main(){
     //TestBind();
 
     //测试std::function
-    TestFunction();
+    //TestFunction();
+
+    //测试tuple+可变参数包
+    TestVarArgsPkg();
 
     
     return 0;
