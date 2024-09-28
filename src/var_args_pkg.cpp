@@ -51,45 +51,6 @@ void TestMarcoVA_ARGS()
     LOG_INFO("End");
 }
 
-/////////////////////////////
-//do while(0) 的用法：do-while(0) 是一个不进行循环的"假"循环结构，它的主要目的是提供一个安全、完整的语句块，使宏定义更加健壮和灵活。
-#define BAD_MARCO(x) \
-    if(x) \
-        std::cout << x << std::endl;\
-    else\
-        std::cout << "No value" << std::endl;
-
-#define GOOD_MARCO(x) \
-    do { \
-        if(x) \
-        std::cout << x << std::endl;\
-        else\
-            std::cout << "No value" << std::endl;\
-    }while(0)
-
-
-
-void TestDoWhileZeroFakeLoop()
-{
-    bool bTest = true;
-    if(bTest)
-        //BAD_MARCO(bTest);
-        GOOD_MARCO(bTest); 
-        
-    else
-        std::cout << "Else" << std::endl;
-
-    //展开后：语法问题：src\var_args_pkg.cpp(67): error C2181: 没有匹配 if 的非法 else
-    // if (condition)
-    //     if(value) 
-    //          std::cout << value << std::endl; 
-    //     else std::cout << "No value" << std::endl;
-    // else
-    //     doSomethingElse();
-}
-
-/////////////////////////////
-
 void TestVarArgsPkg() {
     auto t1=std::make_tuple(1,"abc",false,1.44);
     auto t2=std::make_tuple("hello","world",3);
@@ -109,6 +70,4 @@ void TestVarArgsPkg() {
     std::cout << std::endl;
 
     TestMarcoVA_ARGS();
-
-    TestDoWhileZeroFakeLoop();
 }
