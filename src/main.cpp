@@ -17,6 +17,7 @@
 #include "marco_inline_constexpr.h"
 #include "constexpr.h"
 #include "cast.h"
+#include "string_view.h"
 
 int main(){
     //模板例子
@@ -62,10 +63,13 @@ int main(){
     //TestMarcoInlineConstexpr();
 
     ///测试constexpr
-    TestConstexpr();
+    //TestConstexpr();
 
     //测试类型转换cast
-    TestCast();
+    //TestCast();
+
+    //测试std::string_view
+    TestStringView();
 
     return 0;
 }
