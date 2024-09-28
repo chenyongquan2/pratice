@@ -14,6 +14,9 @@
 #include "bind.h"
 #include "function.h"
 #include "var_args_pkg.h"
+#include "marco_inline_constexpr.h"
+#include "constexpr.h"
+#include "cast.h"
 
 int main(){
     //模板例子
@@ -53,8 +56,16 @@ int main(){
     //TestFunction();
 
     //测试tuple+可变参数包
-    TestVarArgsPkg();
+    //TestVarArgsPkg();
 
-    
+    //测试宏，inline，constexpr
+    //TestMarcoInlineConstexpr();
+
+    ///测试constexpr
+    TestConstexpr();
+
+    //测试类型转换cast
+    TestCast();
+
     return 0;
 }
