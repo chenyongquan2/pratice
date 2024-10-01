@@ -18,6 +18,7 @@
 #include "constexpr.h"
 #include "cast.h"
 #include "string_view.h"
+#include "lambda.h"
 
 int main(){
     //模板例子
@@ -69,7 +70,12 @@ int main(){
     //TestCast();
 
     //测试std::string_view
-    TestStringView();
+    //TestStringView();
+
+    //测试lambda
+    TestLambda();
+
+    std::cout << "main end" << std::endl;
 
     return 0;
 }
