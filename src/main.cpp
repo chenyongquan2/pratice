@@ -4,7 +4,6 @@
 #include "singleton_impl.h"
 //假如我们在下面的jthread.h里面#include "singleton_impl.h"了
 
-#include "jthread.h"
 #include "ref_safe.h"
 #include "asan_detech.h"
 #include "custom_deleter.h"
@@ -21,6 +20,7 @@
 #include "lambda.h"
 #include "weak_ptr.h"
 #include "smart_ptr_mul_thread_safe.h"
+#include "thread.h"
 
 int main(){
     //模板例子
@@ -28,9 +28,6 @@ int main(){
 
     //std::optional例子
     //TestOptional();
-
-    //std::jthread例子
-    //TestJThread();
 
     //单例模式例子
     //TestSingletonImpl();
@@ -81,7 +78,10 @@ int main(){
     //TestWeakPtr();
 
     //测试智能指针线程安全性
-    TestSmartPtrMulThreadSafe();
+    //TestSmartPtrMulThreadSafe();
+
+    //测试线程detach和jthread
+    TestThread();
 
     std::cout << "main end" << std::endl;
 
