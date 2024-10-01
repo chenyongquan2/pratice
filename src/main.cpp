@@ -19,6 +19,8 @@
 #include "cast.h"
 #include "string_view.h"
 #include "lambda.h"
+#include "weak_ptr.h"
+#include "smart_ptr_mul_thread_safe.h"
 
 int main(){
     //模板例子
@@ -73,7 +75,13 @@ int main(){
     //TestStringView();
 
     //测试lambda
-    TestLambda();
+    //TestLambda();
+
+    //测试weak_ptr
+    //TestWeakPtr();
+
+    //测试智能指针线程安全性
+    TestSmartPtrMulThreadSafe();
 
     std::cout << "main end" << std::endl;
 
