@@ -21,6 +21,7 @@
 #include "weak_ptr.h"
 #include "smart_ptr_mul_thread_safe.h"
 #include "thread.h"
+#include "ref_wrapper.h"
 
 int main(){
     //模板例子
@@ -81,7 +82,10 @@ int main(){
     //TestSmartPtrMulThreadSafe();
 
     //测试线程detach和jthread
-    TestThread();
+    //TestThread();
+
+    //测试ref_wrapper的使用
+    TestRefWrapper();
 
     std::cout << "main end" << std::endl;
 

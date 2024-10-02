@@ -1,17 +1,19 @@
-#pragma once
-
+#include "thread.h"
 #include <iostream>
 #include <mutex>
 #include <stop_token>
 #include <thread>
+#include <functional>
 
 static void TestThreadDetachUnsafe(int& x)
 {
-    //std::thread([&x](){//按引用捕获
-    std::thread([x](){//按值捕获，不会导致线程访问到已经销毁的变量，只要捕获的时候，变量x的生命周期还在就没问题。
+    //这里是借了lambda的方式来去按引用捕获，如果是通过std::thread构造，则需要借助std::ref来生成reference_wrapper, 来达到传递引用的效果;
+    std::thread([&x](){//按引用捕获
+    //std::thread([x](){//按值捕获，不会导致线程访问到已经销毁的变量，只要捕获的时候，变量x的生命周期还在就没问题。
         std::cout << "thread start" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        std::cout << "x:" << x << std::endl;//这里的x可能已经生命周期结束了
+        ++x;
+        std::cout << "In TestThreadDetachUnsafe x:" << x << std::endl;//这里的x可能已经生命周期结束了
     }).detach();
 }
 
@@ -77,7 +79,10 @@ void TestThread()
     //测试 当主函数main()返回后主线程就结束了，detach的子线程不能再去访问主线程作用域的相关变量，否则会发生ub未定义行为
     {
         int x =10;
-        TestThreadDetachUnsafe(std::ref(x));
+        //TestThreadDetachUnsafe(std::ref(x));//这里其实没有必要通过std::ref
+        TestThreadDetachUnsafe(x);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        std::cout << "After TestThreadDetachUnsafe, x:" << x << std::endl;
     }
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
