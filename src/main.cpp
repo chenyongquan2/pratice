@@ -22,6 +22,7 @@
 #include "smart_ptr_mul_thread_safe.h"
 #include "thread.h"
 #include "ref_wrapper.h"
+#include "array.h"
 
 int main(){
     //模板例子
@@ -85,7 +86,10 @@ int main(){
     //TestThread();
 
     //测试ref_wrapper的使用
-    TestRefWrapper();
+    //TestRefWrapper();
+
+    //测试std::array
+    TestArray();
 
     std::cout << "main end" << std::endl;
 
