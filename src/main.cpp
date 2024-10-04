@@ -23,6 +23,9 @@
 #include "thread.h"
 #include "ref_wrapper.h"
 #include "array.h"
+#include "constructor_inherit.h"
+#include "constructor_destructor_throw_exception.h"
+#include "variant.h"
 
 int main(){
     //模板例子
@@ -89,7 +92,16 @@ int main(){
     //TestRefWrapper();
 
     //测试std::array
-    TestArray();
+    //TestArray();
+
+    //测试构造函数继承
+    //TestConstructorInherit();
+
+    //测试构造函数和析构函数抛出异常
+    //TestConstructorDestructorThrowException();
+
+    //测试std::variant
+    TestVariant();
 
     std::cout << "main end" << std::endl;
 
