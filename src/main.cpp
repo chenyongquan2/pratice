@@ -26,8 +26,12 @@
 #include "constructor_inherit.h"
 #include "constructor_destructor_throw_exception.h"
 #include "variant.h"
+#include "static.h"
+#include "thread_local.h"
+#include "atomic_memory_order.h"
 
 int main(){
+    std::cout << "main start" << std::endl;
     //模板例子
     //RegisterCommand();
 
@@ -101,7 +105,16 @@ int main(){
     //TestConstructorDestructorThrowException();
 
     //测试std::variant
-    TestVariant();
+    //TestVariant();
+
+    //测试static的声明周期 与 初始化时机与 线程安全性
+    //TestStatic();
+
+    //测试thread_local
+    //TestThreadLocal();
+
+    //测试atomic和memory_order内存序，以及理解所谓内存屏障
+    TestAtomicMemoryOrder();
 
     std::cout << "main end" << std::endl;
 
