@@ -29,6 +29,7 @@
 #include "static.h"
 #include "thread_local.h"
 #include "atomic_memory_order.h"
+#include "list_initialzation.h"
 
 int main(){
     std::cout << "main start" << std::endl;
@@ -114,7 +115,10 @@ int main(){
     //TestThreadLocal();
 
     //测试atomic和memory_order内存序，以及理解所谓内存屏障
-    TestAtomicMemoryOrder();
+    //TestAtomicMemoryOrder();
+
+    //测试列表初始化语法和std::initialzer_list类
+    TestListInitAndInitialzerList();
 
     std::cout << "main end" << std::endl;
 
