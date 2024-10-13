@@ -30,6 +30,7 @@
 #include "thread_local.h"
 #include "atomic_memory_order.h"
 #include "list_initialzation.h"
+#include "packaged_task_future_promise.h"
 
 int main(){
     std::cout << "main start" << std::endl;
@@ -118,7 +119,11 @@ int main(){
     //TestAtomicMemoryOrder();
 
     //测试列表初始化语法和std::initialzer_list类
-    TestListInitAndInitialzerList();
+    //TestListInitAndInitialzerList();
+
+    //测试packaged_task和future promise
+    TestPackagedTaskFuturePromise();
+    
 
     std::cout << "main end" << std::endl;
 
