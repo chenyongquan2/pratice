@@ -31,6 +31,7 @@
 #include "atomic_memory_order.h"
 #include "list_initialzation.h"
 #include "packaged_task_future_promise.h"
+#include "smart_ptr_deleter.h"
 
 int main(){
     std::cout << "main start" << std::endl;
@@ -122,7 +123,10 @@ int main(){
     //TestListInitAndInitialzerList();
 
     //测试packaged_task和future promise
-    TestPackagedTaskFuturePromise();
+    //TestPackagedTaskFuturePromise();
+
+    //测试智能指针的自定义删除器
+    TestSmartPtrDeleter();
     
 
     std::cout << "main end" << std::endl;
