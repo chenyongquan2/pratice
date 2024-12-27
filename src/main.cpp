@@ -32,6 +32,7 @@
 #include "list_initialzation.h"
 #include "packaged_task_future_promise.h"
 #include "smart_ptr_deleter.h"
+#include "bad_weak_ptr_exeception.h"
 
 int main(){
     std::cout << "main start" << std::endl;
@@ -126,8 +127,10 @@ int main(){
     //TestPackagedTaskFuturePromise();
 
     //测试智能指针的自定义删除器
-    TestSmartPtrDeleter();
+    //TestSmartPtrDeleter();
     
+    //测试为啥私有继承enable_shared_from_this,会导致后续调度shared_from_this()时，抛出std::bad_weak_ptr异常
+    TestBadWeakPtrExeception();
 
     std::cout << "main end" << std::endl;
 
