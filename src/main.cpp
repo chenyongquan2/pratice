@@ -33,6 +33,7 @@
 #include "packaged_task_future_promise.h"
 #include "smart_ptr_deleter.h"
 #include "bad_weak_ptr_exeception.h"
+#include "tuple.h"
 
 int main(){
     std::cout << "main start" << std::endl;
@@ -130,7 +131,10 @@ int main(){
     //TestSmartPtrDeleter();
     
     //测试为啥私有继承enable_shared_from_this,会导致后续调度shared_from_this()时，抛出std::bad_weak_ptr异常
-    TestBadWeakPtrExeception();
+    //TestBadWeakPtrExeception();
+
+    //测试tuple的基本使用以及使用结构化绑定来读取tuple的值
+    TestTuple();
 
     std::cout << "main end" << std::endl;
 
